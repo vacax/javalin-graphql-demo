@@ -1,0 +1,59 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'edu.pucmm.eict'
+version = '1.0-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Javalin 7 framework
+    implementation 'io.javalin:javalin:7.1.0'
+
+    // graphql-spqr: genera el esquema GraphQL desde clases Java anotadas
+    // Incluye transitivamente graphql-java 21.3
+    implementation 'io.leangen.graphql:spqr:0.12.4'
+
+    // Reactor (Flux para subscriptions — implementa org.reactivestreams.Publisher)
+    implementation 'io.projectreactor:reactor-core:3.6.10'
+
+    // JSON
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.2'
+
+    // Logging
+    implementation 'ch.qos.logback:logback-classic:1.5.6'
+
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+application {
+    mainClass = 'edu.pucmm.eict.jqd.Main'
+
+    // graphql-spqr usa reflexión profunda sobre internos de Java
+    applicationDefaultJvmArgs = [
+        '--add-opens=java.base/java.lang=ALL-UNNAMED',
+        '--add-opens=java.base/java.util=ALL-UNNAMED',
+        '--add-opens=java.base/java.lang.reflect=ALL-UNNAMED'
+    ]
+}
+
+compileJava {
+    // Preservar nombres de parámetros en bytecode (requerido por graphql-spqr)
+    options.compilerArgs += ['-parameters']
+}
+
+test {
+    useJUnitPlatform()
+}

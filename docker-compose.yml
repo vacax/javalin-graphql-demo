@@ -1,0 +1,7 @@
+services:
+  app:
+    build: .
+    container_name: javalin-graphql-demo
+    ports:
+      - "7000:7000"
+    restart: unless-stopped

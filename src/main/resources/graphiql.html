@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GraphiQL — Javalin Demo</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { height: 100vh; display: flex; flex-direction: column; font-family: sans-serif; }
+    #header {
+      background: #1a1a2e;
+      color: #e0e0e0;
+      padding: 8px 20px;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+    }
+    #header strong { color: #a78bfa; font-size: 15px; }
+    #header span { opacity: 0.6; }
+    #graphiql { flex: 1; overflow: hidden; }
+  </style>
+
+  <!-- GraphiQL 3 — incluye soporte para subscriptions via graphql-ws -->
+  <link rel="stylesheet" href="https://unpkg.com/graphiql@3/graphiql.min.css" />
+</head>
+<body>
+
+  <div id="header">
+    <strong>GraphiQL</strong>
+    <span>Javalin + GraphQL Demo — PUCMM / EICT</span>
+    <span style="margin-left:auto">
+      HTTP: <code>/graphql</code> &nbsp;|&nbsp; WS: <code>ws://…/graphql</code>
+    </span>
+  </div>
+
+  <div id="graphiql"></div>
+
+  <!-- React 18 -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+
+  <!-- GraphiQL 3 (incluye graphql-ws para subscriptions) -->
+  <script src="https://unpkg.com/graphiql@3/graphiql.min.js" crossorigin></script>
+
+  <script>
+    // GraphiQL.createFetcher configura automáticamente:
+    //   - HTTP POST para queries y mutations
+    //   - WebSocket (protocolo graphql-ws) para subscriptions
+    const fetcher = GraphiQL.createFetcher({
+      url:             `${window.location.protocol}//${window.location.host}/graphql`,
+      subscriptionUrl: `ws://${window.location.host}/graphql`,
+    });
+
+    const root = ReactDOM.createRoot(document.getElementById('graphiql'));
+    root.render(
+      React.createElement(GraphiQL, {
+        fetcher,
+        defaultEditorToolsVisibility: true,
+        defaultQuery: `# Bienvenido al GraphiQL Playground
+#
+# ── Queries ──────────────────────────────────────────
+# Ctrl+Enter para ejecutar  |  Shift+Ctrl+P para formatear
+
+query ListarEstudiantes {
+  obtenerEstudiantes {
+    id
+    nombre
+    carrera
+  }
+}
+
+# ── Mutations ─────────────────────────────────────────
+
+# mutation {
+#   agregarEstudiante(nombre: "Ana Torres", carrera: "Ing. Software") {
+#     id nombre carrera
+#   }
+# }
+
+# ── Subscriptions ─────────────────────────────────────
+# Abrir en una pestaña, luego ejecutar la mutation en otra
+
+# subscription {
+#   nuevosEstudiantes { id nombre carrera }
+# }
+
+# subscription {
+#   contadorEstudiantes(intervalSegundos: 3)
+# }
+`,
+      })
+    );
+  </script>
+
+</body>
+</html>
