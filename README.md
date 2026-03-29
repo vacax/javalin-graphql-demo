@@ -374,14 +374,14 @@ src/main/java/edu/pucmm/eict/jqd/
 Al arrancar el servidor se cargan los siguientes datos de ejemplo:
 
 **Profesores**
-- Dr. García — Ingeniería de Software
-- Dra. Martínez — Ciencias de la Computación
+- Prof. Carlos Camacho — Ingeniería Telemática
+- Prof. José Alonso — Ing. en Ciencias de la Computación
 
 **Estudiantes**
-- Juan Pérez (ID 1) — Ingeniería de Software
-- María López (ID 2) — Ingeniería de Sistemas
-- Carlos Rodríguez (ID 3) — Ingeniería de Software
+- Juan Pérez (ID 1) — Ing. en Ciencias de la Computación
+- María López (ID 2) — Ing. en Ciencias de la Computación
+- Carlos Rodríguez (ID 3) — Ingeniería Telemática
 
 **Grupos**
-- Grupo 1: Programación Web — Prof. García — {Juan Pérez, María López}
-- Grupo 2: Bases de Datos — Prof. Martínez — {María López, Carlos Rodríguez}
+- Grupo 1: Programación Web — Prof. Carlos Camacho — {Juan Pérez, María López}
+- Grupo 2: Bases de Datos — Prof. José Alonso — {María López, Carlos Rodríguez}

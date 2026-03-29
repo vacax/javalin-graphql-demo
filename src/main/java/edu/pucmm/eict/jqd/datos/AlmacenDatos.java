@@ -47,13 +47,13 @@ public class AlmacenDatos {
     // ─── Datos de ejemplo ────────────────────────────────────────────────────
 
     private void inicializarDatos() {
-        Profesor p1 = new Profesor(contadorProfesor.getAndIncrement(), "Dr. García",   "Ingeniería de Software");
-        Profesor p2 = new Profesor(contadorProfesor.getAndIncrement(), "Dra. Martínez","Ciencias de la Computación");
+        Profesor p1 = new Profesor(contadorProfesor.getAndIncrement(), "Prof. Carlos Camacho",   "Ingeniería Telemática");
+        Profesor p2 = new Profesor(contadorProfesor.getAndIncrement(), "Prof. José Alonso","Ing. en Ciencias de la Computación");
         profesores.addAll(Arrays.asList(p1, p2));
 
-        Estudiante e1 = new Estudiante(contadorEstudiante.getAndIncrement(), "Juan Pérez",       "Ingeniería de Software");
-        Estudiante e2 = new Estudiante(contadorEstudiante.getAndIncrement(), "María López",      "Ingeniería de Sistemas");
-        Estudiante e3 = new Estudiante(contadorEstudiante.getAndIncrement(), "Carlos Rodríguez", "Ingeniería de Software");
+        Estudiante e1 = new Estudiante(contadorEstudiante.getAndIncrement(), "Juan Pérez",       "Ing. en Ciencias de la Computación");
+        Estudiante e2 = new Estudiante(contadorEstudiante.getAndIncrement(), "María López",      "Ing. en Ciencias de la Computación");
+        Estudiante e3 = new Estudiante(contadorEstudiante.getAndIncrement(), "Carlos Rodríguez", "Ingeniería Telemática");
         estudiantes.addAll(Arrays.asList(e1, e2, e3));
 
         GrupoClase g1 = new GrupoClase(contadorGrupo.getAndIncrement(), "Programación Web",  p1, new ArrayList<>(Arrays.asList(e1, e2)));
